@@ -10,7 +10,8 @@
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1",
-		"skydiver/laravel-materialize-css": "dev-master"
+		"skydiver/laravel-materialize-css": "dev-master",
+		"deployer/deployer": "^3.3"
 	},
 	"autoload": {
 		"classmap": [
