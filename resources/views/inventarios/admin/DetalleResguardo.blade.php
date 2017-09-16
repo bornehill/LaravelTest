@@ -8,16 +8,22 @@
                 document.formDetalleResguardo.method='post';
                 document.formDetalleResguardo.submit();
             }
+
+            $(document).ready(function() {
+                $('select').material_select();
+                $(".dropdown-content li>a, .dropdown-content li>span").css("color", "red");
+              });            
         </script>
     <form name='formDetalleResguardo'>
-        <input type='hidden' name="_token" value="<?php echo csrf_token(); ?>"> 
-        <center>
-            <p id='encabezado'>Detalle de resguardo</p>
+        <input type='hidden' name="_token" value="<?php echo csrf_token(); ?>">
+        <h5 class="red-text text-darken-4 center-align" id='encabezado'>Resguardo</h5>
+        <hr>
+        <div class="row">
             {{$errors->first('updateResguard')}}
             <table border=1 align='center'>
-                <tr>
-                    <th colspan=2>Resguardo</th>
-                </tr>
+                <thead>
+                </thead>
+                <tbody>                
                 <tr>
                     <td>Empleado</td>
                     <td>
@@ -78,14 +84,18 @@
                         {{$errors->first('idEstatus')}}
                     </td>
                 </tr>
-              <tr>
-                <th colspan='2'>
-                    <input type='button' value='Actualizar' onclick='actualizaResguardo();'>
-                    <input type='button' value='Cerrar' onclick='window.close();'>
-                </th>
-              </tr>
+            </tbody>
             </table>
-        </center>
-        <br>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <button class="btn waves-effect waves-light red darken-4" onclick='actualizaResguardo();' name="action">Actualizar
+                </button>
+            </div>
+            <div class="col s6">
+                <button class="btn waves-effect waves-light red darken-4" onclick='window.close();' name="action">Cerrar
+                </button>
+            </div>                
+        </div>        
     </form>
 @stop

@@ -1,9 +1,12 @@
 @extends('inventarios.admin.layouts.base')
 
 @section('content')
-	    <p id='encabezado'>Almacenes</p>
+		<h4 class="red-text text-darken-4 center-align" id='encabezado'>Almacenes</h4>
+	    <hr>
+	    <div class="row">
 	    	<input type='hidden' name="_token" value="<?php echo csrf_token(); ?>"> 
-		    <table border=1 align='center' class='table'>
+		    <table class='striped centered'>
+		    	<thead>
 		    	<tr>
 		    		<th>No.</th>
 		    		<th>Almac&eacute;n</th>
@@ -13,6 +16,8 @@
 		    		<th>Estatus</th>
 		    		<th colspan='2'>Acci&oacute;n</th>
 		    	</tr>
+		    	</thead>
+		    	<tbody>		    	
 		    <?php
 		    $consecutivo=1;
 		    foreach ($almacenes as $almacen) {
@@ -24,17 +29,24 @@
 		      	<td><?php echo $almacen->sucursal->ciudad->descCiudad?></td>
 		      	<td><?php echo $almacen->sucursal->ciudad->pais->descPais?></td>
 		      	<td><?php echo $almacen->estatus->descEstatus?></td>
-		      	<td><?php echo '<a href="modificaAlmacen/'.$almacen->idAlmacen.'">Modificar'?></td>
-		      	<td><?php echo '<a href="eliminaAlmacen/'.$almacen->idAlmacen.'">Eliminar'?></td>
+		      	<td><?php echo '<a class="red-text text-darken-4"
+				 href="modificaAlmacen/'.$almacen->idAlmacen.'" title="Modificar"><i class="material-icons">mode_edit</i></a>'.
+		      		'<a class="red-text text-darken-4" href="eliminaAlmacen/'.$almacen->idAlmacen.'" title="Eliminar"><i class="material-icons">remove_circle</i></a>'?>
+	      		</td>		      	
 		      </tr>
 		    <?php
 		      $consecutivo++;
 		    }    
 		    ?>
-		    <tr>
-		    	<th colspan='8'>
-		    		<a href='agregarAlmacen'>Agregar
-		    	</th>
-		    </tr>
+		    </tbody>
 		    </table>
+	    </div>
+		<div class="row">
+			<div class="col s3">
+				<a href='agregarAlmacen' class="btn waves-effect waves-light red darken-4">Agregar
+					<i class="material-icons right">add_circle</i>
+				</a>
+	    		{{$errors->first('descAlmacen')}}
+	    	</div>
+		</div>		    
 @stop

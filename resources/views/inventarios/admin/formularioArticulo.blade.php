@@ -1,104 +1,135 @@
 @extends('inventarios.admin.layouts.base')
 
 @section('content')
+        <script languaje='javascript'>
+            $(document).ready(function() {
+                $('select').material_select();
+                $(".dropdown-content li>a, .dropdown-content li>span").css("color", "red");
+              });            
+        </script>
         <form name='formArticulo' action='agregarArticulo' method='post' >
-            <input type='hidden' name="_token" value="<?php echo csrf_token(); ?>"> 
-            <center>       
-                <p id='encabezado'>Nuevo Art&iacute;culo</p>
-                <table border=1 align='center'>
-                    <tr>
-                        <th colspan=2>Art&iacute;culo</th>
-                    </tr>
-                    <tr>
-                        <td>Descripci&oacute;n</td>
-                        <td>
-                            <input type='text' name='desArticulo' placeholder='Descrici&oacute; del art&iacute;culo'>
-                            {{$errors->first('descArticulo')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Marca</td>
-                        <td>
-                            <input type='text' name='marca' placeholder='Marca art&iacute;culo'>
-                            {{$errors->first('marca')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Modelo</td>
-                        <td>
-                            <input type='text' name='modelo' placeholder='Modelo art&iacute;culo'>
-                            {{$errors->first('modelo')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Num. Serie</td>
-                        <td>
-                            <input type='text' name='numSerie' placeholder='N&uacute;mero de serie'>
-                            {{$errors->first('numSerie')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fech fact.</td>
-                        <td>
-                            <input type='date' name='fechaFactura' placeholder='dd/mm/yyyy'>
-                            {{$errors->first('fechaFactura')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Folio fact.</td>
-                        <td>
-                            <input type='text' name='folioFactura' placeholder='Folio factura'>
-                            {{$errors->first('folioFactura')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Caracter&iacute;sticas</td>
-                        <td>
-                            <textarea maxLength="200" name='caracteristicas' placeholder='Caracter&iacute;sticas art&iacute;culo'></textarea>
-                        </td>
-                    </tr>                    
-                    <tr>
-                        <td>Stock</td>
-                        <td>
-                            <input type='number' name='stock' placeholder='Stock art&iacute;culo'>
-                            {{$errors->first('stock')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tipo</td>
-                        <td>
-                            <select name='idTipoArticulo'>
-                                <option value='0'>Seleccione un art&iacute;culo</option>
-                                <?php
-                                foreach ($tipoArticulo as $llave=>$valor) {
-                                    echo '<option value="'.$llave.'">'.$valor;
-                                }    
-                                ?>                                
-                            </select>
-                            {{$errors->first('idTipoArticulo')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Estatus</td>
-                        <td>
-                            <select name='idEstatus'>
-                                <option value='0'>Seleccione un estatus</option>
-                                <?php
-                                foreach ($estatus as $llave=>$valor) {
-                                ?>
-                                    <option value='<?php echo $llave?>'><?php echo $valor?>
-                                <?php
-                                }    
-                                ?>                                
-                            </select>
-                            {{$errors->first('idEstatus')}}
-                        </td>
-                    </tr>
-                  <tr>
-                    <th colspan='2'><input type='submit' value='Agregar'></th>
-                  </tr>
-                </table>
-            </center>
-            <br>
+            <input type='hidden' name="_token" value="<?php echo csrf_token(); ?>">
+            <div class="row">
+                <div class="col s6">
+                    <h5 class="red-text text-darken-4" id='encabezado'>Nuevo Art&iacute;culo</h5>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col s6">
+                    <h6 class="red-text text-darken-4">Art&iacute;culo</h6>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col s1">
+                    Descripci&oacute;n
+                </div>
+                <div class="col s5">
+                    <input type='text' name='desArticulo' placeholder='Descrici&oacute; del art&iacute;culo'>
+                    {{$errors->first('descArticulo')}}
+                </div>                
+            </div>
+             <div class="row">
+                <div class="col s1">
+                    Marca
+                </div>
+                <div class="col s5">
+                    <input type='text' name='marca' placeholder='Marca art&iacute;culo'>
+                    {{$errors->first('marca')}}
+                </div>                
+            </div>
+             <div class="row">
+                <div class="col s1">
+                    Modelo
+                </div>
+                <div class="col s5">
+                    <input type='text' name='modelo' placeholder='Modelo art&iacute;culo'>
+                    {{$errors->first('modelo')}}
+                </div>                
+            </div>
+             <div class="row">
+                <div class="col s1">
+                    Num. Serie
+                </div>
+                <div class="col s5">
+                    <input type='text' name='numSerie' placeholder='N&uacute;mero de serie'>
+                    {{$errors->first('numSerie')}}
+                </div>                
+            </div>
+             <div class="row">
+                <div class="col s1">
+                    Fecha fact.
+                </div>
+                <div class="col s5">
+                    <input type='date' name='fechaFactura' placeholder='dd/mm/yyyy'>
+                    {{$errors->first('fechaFactura')}}
+                </div>                
+            </div>
+             <div class="row">
+                <div class="col s1">
+                    Folio fact.
+                </div>
+                <div class="col s5">
+                    <input type='text' name='folioFactura' placeholder='Folio factura'>
+                    {{$errors->first('folioFactura')}}
+                </div>                
+            </div>
+             <div class="row">
+                <div class="col s1">
+                    Caracter&iacute;sticas
+                </div>
+                <div class="col s5">
+                    <textarea maxLength="200" name='caracteristicas' placeholder='Caracter&iacute;sticas art&iacute;culo'></textarea>
+                </div>                
+            </div>
+             <div class="row">
+                <div class="col s1">
+                    Stock
+                </div>
+                <div class="col s5">
+                    <input type='number' name='stock' placeholder='Stock art&iacute;culo'>
+                    {{$errors->first('stock')}}
+                </div>                
+            </div>                                                                        
+            <div class="row">
+                <div class="col s1">
+                    Tipo
+                </div>
+                <div class="col s5">
+                    <select name='idTipoArticulo' id='idTipoArticulo' class="red-text">
+                        <option value='0'>Seleccione un tipo</option>
+                        <?php
+                        foreach ($tipoArticulo as $llave=>$valor) {
+                            echo '<option value="'.$llave.'">'.$valor;
+                        }    
+                        ?>
+                    </select>
+                    {{$errors->first('idTipoArticulo')}}
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col s1">
+                    Estatus
+                </div>
+                <div class="col s5">
+                    <select name='idEstatus' id='idEstatus' class="red-text">
+                        <option value='0'>Seleccione un estatus</option>
+                        <?php
+                        foreach ($estatus as $llave=>$valor) {
+                        ?>
+                            <option value='<?php echo $llave?>'><?php echo $valor?>
+                        <?php
+                        }    
+                        ?>
+                    </select>
+                    {{$errors->first('idEstatus')}}
+                </div>                
+            </div>
+             <div class="row">
+                <div class="col s6">
+                    <button class="btn waves-effect waves-light red darken-4" type="submit" name="action">Agregar
+                      <i class="material-icons right">create</i>
+                    </button>
+                </div>                
+            </div>
         </form>
 @stop
